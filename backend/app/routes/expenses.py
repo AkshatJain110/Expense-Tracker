@@ -23,8 +23,9 @@ def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(securit
         raise HTTPException(status_code=401, detail="Invalid or expired token")
 
 
-# NOTE: summary route must be defined BEFORE /{expense_id} or fastapi treats
-# "summary" as an id param - took me a while to figure this out
+# IMPORTANT: this route must come before /{expense_id} route
+# if it's after, fastapi reads "summary" as the expense_id value and it breaks
+# spent way too long debugging this lol
 @router.get("/summary/by-category")
 def get_summary(db: Session = Depends(get_db), user_id: int = Depends(get_current_user)):
     expenses = db.query(Expense).filter(Expense.user_id == user_id).all()
