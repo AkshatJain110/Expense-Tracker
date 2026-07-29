@@ -1,5 +1,7 @@
 # Expense Tracker
 
+**Live Demo:** [https://expense-tracker-six-xi-77.vercel.app](https://expense-tracker-six-xi-77.vercel.app)
+
 A full-stack expense tracking web app built with FastAPI (Python) and React.
 
 ## What it does
