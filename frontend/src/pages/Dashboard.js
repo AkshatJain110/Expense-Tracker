@@ -10,9 +10,6 @@ function Dashboard() {
   const [editingExpense, setEditingExpense] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  const { logout } = useAuth()
-  const navigate = useNavigate()
-
   useEffect(() => {
     fetchExpenses()
     fetchSummary()
@@ -52,11 +49,6 @@ function Dashboard() {
   const handleDelete = (id) => {
     setExpenses(expenses.filter((e) => e.id !== id))
     fetchSummary()
-  }
-
-  const handleLogout = () => {
-    logout()
-    navigate('/login')
   }
 
   const totalSpent = expenses.reduce((sum, e) => sum + e.amount, 0)
