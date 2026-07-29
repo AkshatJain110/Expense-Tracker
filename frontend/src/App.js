@@ -4,10 +4,13 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Dashboard from './pages/Dashboard'
 
+import Layout from './components/Layout'
+import MonthlyReport from './pages/MonthlyReport'
+
 // protect dashboard route - redirect to login if not logged in
 function PrivateRoute({ children }) {
   const { token } = useAuth()
-  return token ? children : <Navigate to="/login" />
+  return token ? <Layout>{children}</Layout> : <Navigate to="/login" />
 }
 
 function App() {
@@ -22,6 +25,14 @@ function App() {
             element={
               <PrivateRoute>
                 <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/report"
+            element={
+              <PrivateRoute>
+                <MonthlyReport />
               </PrivateRoute>
             }
           />

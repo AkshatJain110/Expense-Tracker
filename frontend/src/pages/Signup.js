@@ -19,7 +19,7 @@ function Signup() {
 
     try {
       const res = await api.post('/auth/signup', { email, password })
-      login(res.data.access_token)
+      login(res.data.access_token, email)
       navigate('/dashboard')
     } catch (err) {
       setError(err.response?.data?.detail || 'Something went wrong')

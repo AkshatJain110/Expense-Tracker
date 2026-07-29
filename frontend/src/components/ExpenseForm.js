@@ -3,11 +3,11 @@ import api from '../api'
 
 const CATEGORIES = ['Food', 'Transport', 'Shopping', 'Bills', 'Entertainment', 'Health', 'Other']
 
-function ExpenseForm({ onExpenseAdded, editingExpense, onCancelEdit, onExpenseUpdated }) {
+function ExpenseForm({ onExpenseAdded, editingExpense, onCancelEdit, onExpenseUpdated, defaultDate }) {
   const [title, setTitle] = useState(editingExpense?.title || '')
   const [amount, setAmount] = useState(editingExpense?.amount || '')
   const [category, setCategory] = useState(editingExpense?.category || 'Food')
-  const [date, setDate] = useState(editingExpense?.date || new Date().toISOString().split('T')[0])
+  const [date, setDate] = useState(editingExpense?.date || defaultDate || new Date().toISOString().split('T')[0])
   const [description, setDescription] = useState(editingExpense?.description || '')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
